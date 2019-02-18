@@ -1,0 +1,9 @@
+<section>
+    <div class="page-header">
+        <h1>{{data.service}}</h1>
+    </div>
+    <div>
+        <div class="alert alert-success" role="alert" ng-if="success()">Authentication has been successfully done! You'll be redirected in a few seconds...</div>
+        <div class="alert alert-danger" role="alert" ng-if="!success()">Authentication failed! Please try again later...</div>
+    </div>
+</section>

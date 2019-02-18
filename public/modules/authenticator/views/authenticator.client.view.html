@@ -1,0 +1,46 @@
+<section>
+    <div class="page-header">
+        <h1>{{form.service}}</h1>
+    </div>
+    <div ng-if="step == 1">
+        <form class="form form-validation" name="form_esp" novalidate>
+            <div class="form-group row" ng-repeat="field in fields">
+                <div class="col-sm-3">
+                    <label for="">{{displayField(field)}}</label>
+                </div>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="form[field]" required>
+                    </div>
+                </div>
+            </div>
+            <!--<button class="btn btn-md btn-primary" type="submit" data-ng-disabled="!canSubmit()" data-ng-click="testConnection()">Test Connection</button>-->
+            <button class="btn btn-md btn-primary" data-ng-disabled="!canSubmit()" data-ng-click="saveConnection()">{{submitText}}
+            </button>
+        </form>
+    </div>
+    <div ng-if="step == 2">
+        <form class="form form-validation" name="form_publications" novalidate>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <div>
+                        <select class="form-control"
+                                data-ng-model="form.publication"
+                                data-ng-options="publication as publication.name for publication in publications"
+                                required>
+                            <option value="" disabled>Choose publication to be associated with</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-md btn-primary" data-ng-disabled="!canSubmitPublication(form_publications)" data-ng-click="savePublication(form_publications)">
+                Save
+            </button>
+        </form>
+    </div>
+    <div ng-if="step == 3">
+        <div ng-class="{'alert-success': !alert.error, 'alert-danger': alert.error, alert: true}" role="alert">
+            {{alert.message}}
+        </div>
+    </div>
+</section>
